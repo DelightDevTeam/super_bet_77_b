@@ -9,6 +9,13 @@ import { FaRegCopy } from "react-icons/fa";
 
 
 const TopUpPage = () => {
+  const auth = localStorage.getItem("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!auth){
+      navigate('/login');
+    }
+  }, [auth, navigate]);
   const [searchParams] = useSearchParams();
   const [amount, setAmount] = useState(0);
   const [paymentType, setPaymentType] = useState("");
@@ -19,7 +26,6 @@ const TopUpPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  const navigate = useNavigate();
 
    const id = searchParams.get("bank");
    const {data:banks} = useFetch(BASE_URL + '/agent-payment-type');

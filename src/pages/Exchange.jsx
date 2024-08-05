@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CurrentBalance from '../components/CurrentBalance'
 import '../assets/css/exchange.css'
 import topup from '../assets/images/topup.png'
 import withdraw from '../assets/images/withdraw.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
 import BASE_URL from '../hooks/baseURL'
 
 const ExchangePage = () => {
+  const auth = localStorage.getItem("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!auth){
+      navigate('/login');
+    }
+  }, [auth, navigate]);
+
   const {data:user} = useFetch(BASE_URL + '/user');
   const language = localStorage.getItem("lan");
   // console.log(user);

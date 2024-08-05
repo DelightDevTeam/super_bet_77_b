@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/css/profile.css';
 import translate from '../assets/images/language.png';
 import winloss from '../assets/images/winloss.png';
@@ -15,12 +15,18 @@ import UpdateProfile from '../components/UpdateProfile';
 import { toast, ToastContainer } from 'react-toastify';
 
 const ProfilePage = () => {
+    const auth = localStorage.getItem("token");
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!auth){
+          navigate('/login');
+        }
+      }, [auth, navigate]);
     const { data: user } = useFetch(BASE_URL + '/user');
     const { data: contact } = useFetch(BASE_URL + '/contact');
     const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
     const [isPwModalOpen, setIsPwModalOpen] = useState(false);
     const [success, setSuccess] = useState("");
-    const navigate = useNavigate();
 
     const languages = [
         { id: 1, img: en, name: "English", value: 'english' },

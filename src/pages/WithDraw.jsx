@@ -7,9 +7,15 @@ import BASE_URL from "../hooks/baseURL";
 import { toast, ToastContainer } from "react-toastify";
 
 const WithDrawPage = () => {
+  const auth = localStorage.getItem("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!auth){
+      navigate('/login');
+    }
+  }, [auth, navigate]);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("bank");
-  const navigate = useNavigate();
   const {data:user} = useFetch(BASE_URL + '/user');
   const balance = user?.balance;
 

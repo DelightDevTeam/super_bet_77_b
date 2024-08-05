@@ -1,9 +1,16 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../hooks/useFetch';
 import BASE_URL from '../hooks/baseURL';
 
 export default function Games() {
+    const auth = localStorage.getItem("token");
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!auth){
+          navigate('/login');
+        }
+      }, [auth, navigate]);
     const { provider, type } = useParams();
     const {data: games, loading} = useFetch(BASE_URL + '/game/gamelist/' + provider + '/' + type);
     const {data: gameTypes} = useFetch(BASE_URL + '/gameTypeProducts/' + type);
@@ -11,8 +18,11 @@ export default function Games() {
     const providerName = providers?.find(p => p.id == provider)?.name;
     // console.log(providers);
 
+
+
     const launchGame = (p_code, t_code, g_code) => (e) => {
         e.preventDefault();
+
         let gameData = {
           "productId" : p_code,
           "gameType" : t_code,

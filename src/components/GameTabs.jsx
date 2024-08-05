@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import BASE_URL from "../hooks/baseURL";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const GameTabs = () => {
   const [selectedTab, setSelectedTab] = useState("All Games");
+  const auth = localStorage.getItem("token");
+  const navigate = useNavigate();
   const tabs = [
     {
       name: "All Games",
@@ -46,6 +48,10 @@ const GameTabs = () => {
 
   const launchGame = (t_code, p_code) => (e) => {
     e.preventDefault();
+    if(!auth){
+      navigate('/login');
+      return;
+    }
     let gameData = {
       productId: p_code,
       gameType: t_code,

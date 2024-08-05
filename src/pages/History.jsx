@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Badge, Button, ButtonGroup, Form } from "react-bootstrap";
 import "../assets/css/history.css";
 import { DataGrid } from "@mui/x-data-grid";
 import useFetch from "../hooks/useFetch";
 import BASE_URL from "../hooks/baseURL";
+import { useNavigate } from "react-router-dom";
 
 const deposits = [
   { field: "id", headerName: "No", width: 150},
@@ -78,6 +79,13 @@ const withdraws_mm = [
 ];
 
 const HistoryPage = () => {
+  const auth = localStorage.getItem("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!auth){
+      navigate('/login');
+    }
+  }, [auth, navigate]);
   const {data: deposit} = useFetch(BASE_URL + "/transaction/deposit-log");
   const {data: withdraw} = useFetch(BASE_URL + "/transaction/withdraw-log");
   const [show, setShow] = useState(false);

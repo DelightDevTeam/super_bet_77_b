@@ -9,7 +9,13 @@ import useFetch from '../hooks/useFetch'
 import BASE_URL from '../hooks/baseURL'
 
 const ExchangeBank = () => {
-    const navigate=useNavigate();
+    const auth = localStorage.getItem("token");
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!auth){
+          navigate('/login');
+        }
+      }, [auth, navigate]);
     const [searchParams]=useSearchParams();
     const [url, setUrl] = useState(BASE_URL + '/agent-payment-type');
 

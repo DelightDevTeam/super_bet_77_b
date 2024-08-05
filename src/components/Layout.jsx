@@ -23,11 +23,11 @@ const Layout = () => {
 
   const navigate = useNavigate();
 
-  if(!auth){
-    useEffect(() => {
-      navigate('/login');
-    }, [navigate, auth]);
-  }
+  // if(!auth){
+  //   useEffect(() => {
+  //     navigate('/login');
+  //   }, [navigate, auth]);
+  // }
   
   return (
     <div>

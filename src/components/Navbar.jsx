@@ -13,11 +13,7 @@ const Navbar = () => {
   const {data:user} = useFetch(BASE_URL + '/user')
   const [loader, setLoader] = useState(false);
   const language = localStorage.getItem('lan');
-
-  // console.log(user);
-
-
-// const reload = () => window.location.reload();
+  const auth = localStorage.getItem('token');
   
   return (
     <div className='py-2 py-sm-3 px-1 px-sm-2 px-lg-4 d-flex align-items-center justify-content-between'>
@@ -26,32 +22,24 @@ const Navbar = () => {
       </Link>
       {/* <button onClick={()=>setIsLoginOpen(true)} className="primaryBtn py-2 px-4">Login</button> */}
       <div className="d-flex align-items-center gap-4">
-        <div className='d-flex align-items-center gap-2'>
-        {/* <img src={user} className='user' /> */}
-        {/* <i className="fas fa-rotate cursor-pointer me-1" onClick={() => reload()}></i> */}
-          <FaRegCircleUser className="" style={{ fontSize: "30px" }} />
-          <div>
-            {/* <small className='fw-semibold d-block userNav'>{user && user.name}</small> */}
-            <small className='userNav fw-semibold d-block'>Name : {user && user.name}</small>
-            <small className='userNav fw-semibold'>
-              <i className="fas fa-wallet"></i> : {user && Number(user.balance).toLocaleString()}</small>
+        {!auth && (
+          <Link to={'/login'} className="primaryBtn py-2 px-4">Login</Link>
+        )}
+        {auth && (
+          <div className='d-flex align-items-center gap-2'>
+            <FaRegCircleUser className="" style={{ fontSize: "30px" }} />
+            <div>
+              <small className='userNav fw-semibold d-block'>Name : {user && user.name}</small>
+              <small className='userNav fw-semibold'>
+                <i className="fas fa-wallet"></i> : {user && Number(user.balance).toLocaleString()}</small>
+            </div>
           </div>
-        </div>
-{/* 
-        {loader ? (
-          <Spinner />
-        ): (
-          <button 
-              className="d-inline btn btn-sm btn-outline-light"
-              onClick={logout}
-          >
-                <FaRightFromBracket />
-                <small className='ms-2 d-none d-md-inline'>{language === "english" ? "Logout" : "ထွက်ရန်"}</small>
-          </button>
-        )} */}
-
+        )}
       </div>
-      <Modal  className='text-black loginModal rounded-4' show={isLoginOpen} onHide={()=>setIsLoginOpen(false)}>
+
+
+
+      {/* <Modal  className='text-black loginModal rounded-4' show={isLoginOpen} onHide={()=>setIsLoginOpen(false)}>
         <Modal.Header closeButton style={{background:'#Eee'}}>
           <Modal.Title className='text-center' style={{width:'100%'}}>
             <h5 className="fw-semibold text-center">Login Your Account</h5>
@@ -78,7 +66,7 @@ const Navbar = () => {
         </button>
         </Modal.Body>
         
-      </Modal>
+      </Modal> */}
     </div>
   )
 }
