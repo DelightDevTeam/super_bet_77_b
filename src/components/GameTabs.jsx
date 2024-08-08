@@ -13,6 +13,10 @@ const GameTabs = () => {
       mm_name: "ဂိမ်းအားလုံး",
     },
     {
+      name: "Hot Games",
+      mm_name: "ဟော့ဂိမ်း",
+    },
+    {
       name: "Slot",
       mm_name: "စလော့",
     },
@@ -267,6 +271,170 @@ const GameTabs = () => {
               })}
           </div>
         </>
+      )}
+       {selectedTab === "Hot Games" && (
+       <>
+           <div className="row px-2">
+            {slot_lists &&
+              slot_lists.map((item, index) => {
+                return (
+                  <Link
+                    to={"/games/" + item.id + "/" +  slotGame?.game_type?.code}
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </Link>
+                );
+              })}
+            {slot_lobby &&
+              slot_lobby.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                    onClick={launchGame(slotGame.game_lobby?.code, item.id)}
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+           <div className="row px-2">
+            {casinos_lists &&
+              casinos_lists.map((item, index) => {
+                return (
+                  <Link
+                    to={"/games/" + item.id + "/" + casinoGame?.game_type?.code}
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </Link>
+                );
+              })}
+            {casinos_lobby &&
+              casinos_lobby.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                    onClick={launchGame(casinoGame.game_lobby?.code, item.id)}
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+           <div className="row px-2">
+            {sports_lists &&
+              sports_lists.map((item, index) => {
+                return (
+                  <Link
+                    to={"/games/" + item.id + "/" + sportGame?.game_type?.code}
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </Link>
+                );
+              })}
+            {sports_lobby &&
+              sports_lobby.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                    onClick={launchGame(sportGame.game_lobby?.code, item.id)}
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+           <div className="row px-2">
+            {fish_lists &&
+              fish_lists.map((item, index) => {
+                return (
+                  <Link
+                    to={"/games/" + item.id + "/" + fishGame?.game_type?.code}
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </Link>
+                );
+              })}
+            {fish_lobby &&
+              fish_lobby.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    style={{ position: "relative" }}
+                    className=" cursor-pointer col-4 col-sm-3 col-lg-2 mb-2 p-0 p-sm-1 m-0"
+                    onClick={launchGame(fishGame.game_lobby?.code, item.id)}
+                  >
+                    <img
+                      src={item.imgUrl}
+                      className="img-fluid gameImg rounded-3"
+                    />
+                    <div className="gameImgTitle text-center py-1 px-1 px-sm-2">
+                      {item.name}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+       </>
       )}
       {selectedTab === "Slot" && (
         <div className="row px-2">
