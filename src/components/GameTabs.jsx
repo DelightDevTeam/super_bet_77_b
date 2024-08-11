@@ -5,17 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import HotGames from "./HotGames";
 
 const GameTabs = () => {
-  const [selectedTab, setSelectedTab] = useState("All Games");
+  const [selectedTab, setSelectedTab] = useState("Hot Games");
   const auth = localStorage.getItem("token");
   const navigate = useNavigate();
   const tabs = [
     {
-      name: "All Games",
-      mm_name: "ဂိမ်းအားလုံး",
-    },
-    {
       name: "Hot Games",
       mm_name: "ဟော့ဂိမ်း",
+    },
+    {
+      name: "All Games",
+      mm_name: "ဂိမ်းအားလုံး",
     },
     {
       name: "Slot",
