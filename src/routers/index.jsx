@@ -10,6 +10,7 @@ import HistoryPage from "../pages/History";
 import WinLossReportPage from "../pages/WinLossReport";
 import Login from "../pages/Auth/Login";
 import Games from "../pages/Games";
+import Promotion from "../pages/Promotion";
 
 const routers = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const routers = createBrowserRouter([
         path: "/win-loss-report",
         element: <WinLossReportPage />,
       },
+      {
+        path: "/promotions",
+        element: <Promotion />,
+      }
     ],
   },
   {

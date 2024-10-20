@@ -154,11 +154,19 @@ const ProfilePage = () => {
                                 </Link>
                                 <p></p>
                             </div>
+
                             <div className="my-3 d-flex align-items-center justify-content-between">
                                 <div onClick={() => setIsPwModalOpen(true)} className='d-flex align-items-center gap-2'>
                                     <img src={translate} alt="Change Password" />
                                     <p>{language === "english" ? "Change Password" : "စကားဝှက်ပြောင်းရန်"}</p>
                                 </div>
+                            </div>
+                            <div className="my-2 d-flex align-items-center justify-content-between">
+                                <Link to={'/promotions'} className='d-flex align-items-center gap-2'>
+                                    <i className="fas fa-gift"></i>
+                                    <p>{language === "english" ? "Promotions" : "ပရိုမိုးရှင်း"}</p>
+                                </Link>
+                                <p></p>
                             </div>
                             <div className="my-3 d-flex align-items-center justify-content-between">
                                 <div onClick={logout} className='d-flex align-items-center gap-2'>
